@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadway Bingo Bonanza</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Oswald:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            /* Replace 'your-image-url.jpg' with your actual image URL */
+            background-image: url('your-image-url.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Broadway-inspired gradient with theater colors */
+            background: linear-gradient(-45deg, #8B0000, #FFD700, #000000, #DC143C, #4B0082, #FF6347);
+            background-size: 400% 400%;
+            animation: curtainCall 20s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes curtainCall {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating theater elements */
+        .theater-element {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: spotlightDance 8s ease-in-out infinite;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        }
+
+        .theater-element:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
+        .theater-element:nth-child(2) { top: 15%; right: 10%; animation-delay: 1s; }
+        .theater-element:nth-child(3) { top: 70%; left: 15%; animation-delay: 2s; }
+        .theater-element:nth-child(4) { top: 85%; right: 20%; animation-delay: 3s; }
+        .theater-element:nth-child(5) { top: 40%; left: 5%; animation-delay: 4s; }
+        .theater-element:nth-child(6) { top: 25%; right: 5%; animation-delay: 5s; }
+
+        @keyframes spotlightDance {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                text-shadow: 0 0 20px #FFD700;
+            }
+            33% { 
+                transform: translateY(-15px) rotate(120deg) scale(1.1);
+                text-shadow: 0 0 30px #FF6347;
+            }
+            66% { 
+                transform: translateY(-10px) rotate(240deg) scale(0.9);
+                text-shadow: 0 0 25px #4B0082;
+            }
+        }
+
+        .stage {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 50px rgba(255, 215, 0, 0.3);
+            border: 3px solid #FFD700;
+            animation: stageLight 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: spotlight 10s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spotlight {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes stageLight {
+            from { 
+                transform: translateY(100px) scale(0.8); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FFD700, #FF6347, #FFD700, #DC143C);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: marqueeLights 4s ease-in-out infinite;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            z-index: 10;
+        }
+
+        h1::after {
+            content: '✨ THE SHOW MUST GO ON! ✨';
+            display: block;
+            font-size: 1.2rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #FFD700;
+            margin-top: 10px;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes marqueeLights {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 20px #FFD700);
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 30px #FF6347);
+            }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(139, 0, 0, 0.6));
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 
+                inset 0 4px 8px rgba(0, 0, 0, 0.3),
+                0 8px 32px rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(15px);
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .bingo-square {
+            width: 95px;
+            height: 95px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.7));
+            border: 3px solid #8B0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px;
+            padding: 8px;
+            position: relative;
+            overflow: hidden;
+            color: #8B0000;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .bingo-square::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: left 0.6s;
+        }
+
+        .bingo-square:hover::before {
+            left: 100%;
+        }
+
+        .bingo-square:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 
+                0 20px 40px rgba(139, 0, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(135deg, #FFD700, #FF6347);
+            border-color: #FFD700;
+            animation: curtainRise 0.6s ease-out;
+        }
+
+        @keyframes curtainRise {
+            0% { transform: translateY(-8px) scale(1.08) rotateY(0deg); }
+            50% { transform: translateY(-8px) scale(1.08) rotateY(10deg); }
+            100% { transform: translateY(-8px) scale(1.08) rotateY(0deg); }
+        }
+
+        .bingo-square.marked {
+            background: linear-gradient(135deg, #DC143C, #8B0000);
+            color: #FFD700;
+            border-color: #FFD700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: standingOvation 0.8s ease-out;
+            box-shadow: 
+                0 8px 25px rgba(220, 20, 60, 0.5),
+                inset 0 2px 4px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes standingOvation {
+            0% { transform: scale(1) rotateZ(0deg); }
+            25% { transform: scale(1.2) rotateZ(-5deg); }
+            50% { transform: scale(1.15) rotateZ(5deg); }
+            75% { transform: scale(1.1) rotateZ(-2deg); }
+            100% { transform: scale(1) rotateZ(0deg); }
+        }
+
+        .bingo-square.free {
+            background: linear-gradient(135deg, #4B0082, #8A2BE2);
+            color: #FFD700;
+            border-color: #FFD700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: encoreGlow 3s ease-in-out infinite;
+            font-weight: 900;
+        }
+
+        @keyframes encoreGlow {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(75, 0, 130, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(138, 43, 226, 0.9), 0 0 55px rgba(255, 215, 0, 0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        button {
+            padding: 18px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Oswald', sans-serif;
+            cursor: pointer;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: #FFD700;
+            border: 3px solid #FFD700;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 10px 25px rgba(139, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 215, 0, 0.2);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 15px 35px rgba(139, 0, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #DC143C, #FF6347);
+            animation: applause 0.6s ease-out;
+        }
+
+        @keyframes applause {
+            0%, 100% { transform: translateY(-5px) scale(1.05); }
+            25% { transform: translateY(-5px) scale(1.08) rotateZ(1deg); }
+            75% { transform: translateY(-5px) scale(1.08) rotateZ(-1deg); }
+        }
+
+        button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .bingo-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #8B0000, #DC143C, #8B0000);
+            color: #FFD700;
+            padding: 60px 80px;
+            border-radius: 30px;
+            font-size: 5rem;
+            font-weight: 900;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.7),
+                inset 0 4px 8px rgba(255, 215, 0, 0.3),
+                0 0 100px rgba(255, 215, 0, 0.6);
+            animation: grandFinale 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            display: none;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border: 5px solid #FFD700;
+        }
+
+        @keyframes grandFinale {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.2) rotate(-20deg); 
+                opacity: 0; 
+            }
+            30% { 
+                transform: translate(-50%, -50%) scale(1.2) rotate(10deg); 
+            }
+            60% { 
+                transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); 
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+                opacity: 1; 
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: none;
+            animation: curtainDown 0.8s ease;
+        }
+
+        @keyframes curtainDown {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bingo-message button {
+            font-size: 20px;
+            margin-top: 25px;
+            padding: 15px 30px;
+            background: rgba(255, 215, 0, 0.2);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            color: #FFD700;
+        }
+
+        .bingo-message button:hover {
+            background: rgba(255, 215, 0, 0.4);
+        }
+
+        /* Theater confetti - stars and musical notes */
+        .theater-confetti {
+            position: fixed;
+            font-size: 24px;
+            animation: theaterFall 4s linear infinite;
+            z-index: 1001;
+            pointer-events: none;
+        }
+
+        .theater-confetti:nth-child(odd) { animation-delay: 0.5s; }
+        .theater-confetti:nth-child(3n) { animation-delay: 1s; }
+        .theater-confetti:nth-child(4n) { animation-delay: 1.5s; }
+
+        @keyframes theaterFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stage {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .bingo-square {
+                width: 65px;
+                height: 65px;
+                font-size: 9px;
+            }
+            
+            .bingo-message {
+                font-size: 3rem;
+                padding: 40px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating theater elements -->
+    <div class="theater-element">🎭</div>
+    <div class="theater-element">🎪</div>
+    <div class="theater-element">🎨</div>
+    <div class="theater-element">🎬</div>
+    <div class="theater-element">🌟</div>
+    <div class="theater-element">🎵</div>
+
+    <div class="stage">
+        <h1>🎭 BROADWAY BINGO! Hunchbakc & Hangovers 🎭</h1>
+        <div class="bingo-card" id="bingoCard"></div>
+        <div class="controls">
+            <button onclick="generateNewCard()">🎲 NEW SHOW</button>
+            <button onclick="clearCard()">✨ INTERMISSION</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="bingo-message" id="bingoMessage">
+        🎭 BRAVO! 🎭
+        <br>STANDING OVATION!
+        <br>
+        <div style="font-size: 24px; margin-top: 20px;">
+            <button onclick="hideBingoMessage()">🎬 ENCORE!</button>
+        </div>
+    </div>
+
+    <script>
+        // CUSTOMIZE YOUR BROADWAY BINGO ITEMS HERE
+        const bingoItems = [
+            "FREE SPACE ⭐",
+            "Saw someone cry during a ballad",
+            "Heard 'The show must go on!'",
+            "Witnessed a standing ovation",
+            "Someone forgot their lines",
+            "Costume malfunction",
+            "Missed a cue",
+            "Perfect high note hit",
+            "Audience member sang along",
+            "Props fell over",
+            "Actor broke character",
+            "Encore performance",
+            "Someone in the front row fell asleep",
+            "Cell phone went off",
+            "Late arrival during Act 1",
+            "Understudy performance",
+            "Someone brought flowers",
+            "Technical difficulty",
+            "Actor winked at audience",
+            "Intermission lasted too long",
+            "Someone wore sequins",
+            "Program rustling",
+            "Standing ovation",
+            "Emotional breakdown scene",
+            "Dance number stopped the show",
+            "Someone took illegal photos",
+            "Wig came off",
+            "Microphone feedback",
+            "Audience participation",
+            "Someone knew all the words",
+            "Unexpected ad-lib",
+            "Perfect choreography",
+            "Someone dressed as a character",
+            "Applause interrupted dialogue",
+            "Someone brought opera glasses",
+            "Dramatic exit",
+            "Love duet",
+            "Comic relief character",
+            "Surprise guest appearance",
+            "Curtain call lasted forever"
+        ];
+
+        let currentCard = [];
+        let markedSquares = new Set();
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function generateNewCard() {
+            const shuffled = shuffleArray(bingoItems);
+            currentCard = shuffled.slice(0, 25);
+            
+            // Ensure center square is "FREE SPACE"
+            const freeSpaceIndex = currentCard.findIndex(item => item.includes("FREE SPACE"));
+            if (freeSpaceIndex !== -1 && freeSpaceIndex !== 12) {
+                [currentCard[12], currentCard[freeSpaceIndex]] = [currentCard[freeSpaceIndex], currentCard[12]];
+            } else if (freeSpaceIndex === -1) {
+                currentCard[12] = "FREE SPACE ⭐";
+            }
+            
+            markedSquares.clear();
+            markedSquares.add(12); // Mark center square as free
+            renderCard();
+        }
+
+        function renderCard() {
+            const cardElement = document.getElementById('bingoCard');
+            cardElement.innerHTML = '';
+            
+            for (let i = 0; i < 25; i++) {
+                const square = document.createElement('div');
+                square.className = 'bingo-square';
+                square.textContent = currentCard[i];
+                square.onclick = () => toggleSquare(i);
+                
+                if (i === 12) {
+                    square.classList.add('free');
+                }
+                
+                if (markedSquares.has(i)) {
+                    square.classList.add('marked');
+                }
+                
+                cardElement.appendChild(square);
+            }
+        }
+
+        function toggleSquare(index) {
+            if (markedSquares.has(index)) {
+                if (index !== 12) { // Don't allow unmarking free space
+                    markedSquares.delete(index);
+                }
+            } else {
+                markedSquares.add(index);
+            }
+            
+            renderCard();
+            checkForBingo();
+        }
+
+        function clearCard() {
+            markedSquares.clear();
+            markedSquares.add(12); // Keep center square marked
+            renderCard();
+        }
+
+        function checkForBingo() {
+            const winPatterns = [
+                // Rows
+                [0, 1, 2, 3, 4],
+                [5, 6, 7, 8, 9],
+                [10, 11, 12, 13, 14],
+                [15, 16, 17, 18, 19],
+                [20, 21, 22, 23, 24],
+                // Columns
+                [0, 5, 10, 15, 20],
+                [1, 6, 11, 16, 21],
+                [2, 7, 12, 17, 22],
+                [3, 8, 13, 18, 23],
+                [4, 9, 14, 19, 24],
+                // Diagonals
+                [0, 6, 12, 18, 24],
+                [4, 8, 12, 16, 20]
+            ];
+
+            for (const pattern of winPatterns) {
+                if (pattern.every(index => markedSquares.has(index))) {
+                    showBingoMessage();
+                    createTheaterConfetti();
+                    return;
+                }
+            }
+        }
+
+        function showBingoMessage() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('bingoMessage').style.display = 'block';
+        }
+
+        function hideBingoMessage() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('bingoMessage').style.display = 'none';
+            // Clean up confetti
+            document.querySelectorAll('.theater-confetti').forEach(conf => conf.remove());
+        }
+
+        function createTheaterConfetti() {
+            const theaterSymbols = ['⭐', '🎭', '🎪', '🎵', '🎶', '🌟', '✨', '🎬', '🎨'];
+            
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'theater-confetti';
+                confetti.textContent = theaterSymbols[Math.floor(Math.random() * theaterSymbols.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.color = `hsl(${Math.random() * 60 + 40}, 80%, 70%)`; // Gold to red colors
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 6000);
+            }
+        }
+
+        // Initialize the card when page loads
+        generateNewCard();
+    </script>
+</body>
+</html>
