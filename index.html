@@ -280,6 +280,7 @@
             justify-content: center;
             position: relative;
             z-index: 10;
+            margin-bottom: 25px;
         }
 
         button {
@@ -491,6 +492,7 @@
                 gap: 12px;
                 flex-wrap: wrap;
                 justify-content: center;
+                margin-bottom: 15px;
             }
 
             button {
@@ -571,6 +573,7 @@
 
             .controls {
                 gap: 8px;
+                margin-bottom: 10px;
             }
         }
 
@@ -608,6 +611,7 @@
 
             .controls {
                 gap: 10px;
+                margin-bottom: 8px;
             }
 
             button {
@@ -665,13 +669,14 @@
     <div class="theater-element">🌟</div>
     <div class="theater-element">🎵</div>
 
+    <div class="controls">
+        <button onclick="generateNewCard()">🎲 NEW SHOW</button>
+        <button onclick="clearCard()">✨ INTERMISSION</button>
+    </div>
+
     <div class="stage">
         <h1>🎭 BROADWAY BINGO! Hunchback & Hangovers 🎭</h1>
         <div class="bingo-card" id="bingoCard"></div>
-        <div class="controls">
-            <button onclick="generateNewCard()">🎲 NEW SHOW</button>
-            <button onclick="clearCard()">✨ INTERMISSION</button>
-        </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
