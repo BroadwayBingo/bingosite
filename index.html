@@ -18,6 +18,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
             /* Replace 'your-image-url.jpg' with your actual image URL */
             background-image: url('your-image-url.jpg');
@@ -87,6 +88,7 @@
             animation: stageLight 2s ease-out;
             position: relative;
             overflow: hidden;
+            margin-top: 80px;
         }
 
         .stage::before {
@@ -281,6 +283,10 @@
             position: relative;
             z-index: 10;
             margin-bottom: 25px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         button {
@@ -442,6 +448,7 @@
             body {
                 padding: 8px;
                 min-height: 100vh;
+                justify-content: center;
             }
 
             .theater-element {
@@ -453,6 +460,7 @@
                 margin: 2px;
                 border-radius: 20px;
                 max-width: 100vw;
+                margin-top: 60px;
             }
             
             h1 {
@@ -493,6 +501,10 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 margin-bottom: 15px;
+                top: 10px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             button {
@@ -530,11 +542,13 @@
         @media (max-width: 480px) {
             body {
                 padding: 5px;
+                justify-content: center;
             }
 
             .stage {
                 padding: 10px 8px;
                 margin: 1px;
+                margin-top: 50px;
             }
 
             h1 {
@@ -574,6 +588,10 @@
             .controls {
                 gap: 8px;
                 margin-bottom: 10px;
+                top: 8px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
 
@@ -585,6 +603,7 @@
 
             .stage {
                 padding: 10px;
+                margin-top: 40px;
             }
 
             h1 {
@@ -612,6 +631,10 @@
             .controls {
                 gap: 10px;
                 margin-bottom: 8px;
+                top: 5px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             button {
@@ -675,7 +698,7 @@
     </div>
 
     <div class="stage">
-        <h1>🎭 BROADWAY BINGO! Hunchback & Hangovers 🎭</h1>
+        <h1>🎭 BROADWAY BINGO! 🎭</h1>
         <div class="bingo-card" id="bingoCard"></div>
     </div>
 
